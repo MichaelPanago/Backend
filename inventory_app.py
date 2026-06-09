@@ -20,7 +20,15 @@ while True:
     choice = input("Κάντε μια επιλογή: ")
     
     if choice =="1":
-       product = input("Όνομα Προϊόντος: ")
+       product_code = input("Κωδικός Προϊόντος: ")
+       name = input("Όνομα Προϊόντος: ")
+       quantity = int(input("Ποσότητα: "))
+       product = {
+        "product_code": product_code,
+        "name": name,
+        "quantity": quantity
+     }
+       
        products.append(product)
        save_products()
        print("Το προϊόν προστέθηκε!")
@@ -28,7 +36,10 @@ while True:
     elif choice == "2":
         print("Προϊόντα: ")
         for product in products:
-            print(product)
+         print(f"Κωδικός: {product['product_code']}")
+         print(f"Όνομα: {product['name']}")
+         print(f"Ποσότητα: {product['quantity']}")
+         print("------------------")
     
     elif choice == "3":
         print("Αντίο!")
@@ -40,9 +51,10 @@ while True:
 
     elif choice == "5":
         search = input("Ποιο προϊόν ψάχνεις; ")
-        if search in products:
+        for product in products:
+         if search == product["name"]:
             print(f"Το προϊόν βρέθηκε με όνομα: {search}")
-        else:
+         else:
             print("Το προϊόν δεν βρέθηκε!")
     
     elif choice == "6":
